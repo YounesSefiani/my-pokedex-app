@@ -1,16 +1,17 @@
 import React from 'react';
 
-const PokemonCard = ({ name, image, type}) => {
+const PokemonCard = (props) => {
+    console.log(props);
     return (
         <figure className="pokemon-card">
-            {image ? (
-            <img src={image} alt={name}/>
+            {props.image ? (
+            <img src={props.image} alt={props.name}/>
             ) : (
                 <p>???</p>
             )}
             <figcaption>
-                <h3>{name}</h3>
-                <p>Type : {type || 'Inconnu'}</p>
+                <h3>{props.name}</h3>
+                <p>Type : {props.type || 'Inconnu'}</p>
             </figcaption>
         </figure>
     );
