@@ -3,7 +3,7 @@ import PokemonCard from './components/PokemonCard';
 import './App.css'
 import NavBar from './components/NavBar';
 
-const pokemonList = [
+const pokemonData = [
   {
     name: "Bulbasaur",
     imgSrc: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
@@ -30,32 +30,23 @@ const pokemonList = [
 ];
 
 function App() {
+  const [selectedPokemon, setSelectedPokemon] = useState(pokemonData[0]);
   const [pokemonIndex, setPokemonIndex] = useState(0);
 
-  const handleNext = () => {
-    if (pokemonIndex < pokemonList.length - 1) {
-      setPokemonIndex(pokemonIndex + 1);
-    }
+  const handleSelectPokemon = (pokemon) => {
+    setSelectedPokemon(pokemon);
   };
-
-  const handlePrevious = () => {
-    if (pokemonIndex > 0) {
-      setPokemonIndex(pokemonIndex - 1);
-    }
-  };
-
-  const pokemon = pokemonList[pokemonIndex];
 
   return (
     <div className="contents">
         <PokemonCard
-          name={pokemon.name}
-          image={pokemon.imgSrc}
-          type={pokemon.type}
+          name={selectedPokemon.name}
+          image={selectedPokemon.imgSrc}
+          type={selectedPokemon.type}
         />
         <NavBar
-          onPrevious={handlePrevious}
-          onNext={handleNext}
+          pokemonList={pokemonData}
+          onSelectPokemon={handleSelectPokemon}
         />
     </div>
   );
